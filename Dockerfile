@@ -1,0 +1,10 @@
+# Correct base image for Java 17
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+COPY target/boxing-app-management-1.0.0.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "boxing-app-management-1.0.0.jar"]
