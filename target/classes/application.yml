@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-d7jphqnavr4c73chkl30-a.singapore-postgres.render.com:5432/boxing_db_bsa3
+    username: root
+    password: Vks933tziSADLIXEVqqlhpoZj2FElqCN
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: boxing_app   # <-- tell Hibernate to use gym schema
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rgavhale1994@gmail.com
+    password: rwou jaux qtrk yxhc
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# ==================== JWT ====================
+#app:
+#  jwt:
+#    secret: GymManagementSuperSecretKeyThatIsAtLeast256BitsLong1234567890ABCDEF
+#    expiration-ms: 86400000
+
+# ==================== Logging ====================
+logging:
+  level:
+    com.gym: DEBUG
