@@ -16,19 +16,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // ✅ IMPORTANT
-                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // enable CORS
+                .csrf(AbstractHttpConfigurer::disable) // disable CSRF for APIs
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/join").permitAll()
                         .requestMatchers("/api/joinedusers").permitAll()
                         .requestMatchers("/api/find/joinedusers").permitAll()
-
                         .requestMatchers("/api/users/**").authenticated()
-
                         .anyRequest().authenticated()
                 );
 
@@ -37,11 +33,12 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-
         CorsConfiguration config = new CorsConfiguration();
 
+        // Allow both local dev and deployed frontend
         config.setAllowedOrigins(List.of(
-                "https://boxing-app-ui.onrender.com"
+                "http://localhost:3000",              // local development
+                "https://boxing-app-ui.onrender.com"  // production frontend
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

@@ -20,7 +20,6 @@ com\gym\app\repository\UserRepository.class
 com\gym\app\service\EmailService.class
 com\gym\app\dto\SignUpRequest.class
 com\gym\app\repository\GymPlanPurchaseRepository.class
-com\gym\app\config\CorsConfig.class
 com\gym\app\dto\GymPlanResponse.class
 com\gym\app\dto\SignInRequest.class
 com\gym\app\repository\JoinRequestRepository.class
