@@ -65,7 +65,7 @@ public class AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(newPassword));
         userRepository.save(user);
 
         resetTokens.remove(token); // invalidate token
