@@ -2,6 +2,7 @@ package com.gym.app.controller;
 
 import com.gym.app.model.User;
 import com.gym.app.service.AuthService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,5 +22,15 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestBody User user) {
         return service.login(user);
+    }
+
+    @PostMapping("/forgot-password")
+    public String forgotPassword(@RequestParam String email) throws MessagingException {
+        return service.forgotPassword(email);
+    }
+
+    @PostMapping("/reset-password")
+    public String resetPassword(@RequestParam String token, @RequestParam String newPassword) {
+        return service.resetPassword(token, newPassword);
     }
 }

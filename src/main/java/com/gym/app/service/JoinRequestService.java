@@ -56,7 +56,6 @@ public class JoinRequestService {
             LocalDate registeredDate,
             Pageable pageable
     ) {
-
         Specification<JoinBatchRequest> spec =
                 Specification.where(JoinBatchRequestSpec.nameContains(name))
                         .and(JoinBatchRequestSpec.mobileContains(mobile))
@@ -65,8 +64,16 @@ public class JoinRequestService {
                         .and(JoinBatchRequestSpec.programContains(program))
                         .and(JoinBatchRequestSpec.dateEquals(registeredDate));
 
-        return repo.findAll(spec, pageable);
+        // Force sorting by registeredDate DESC
+        Pageable sortedPageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "registeredDate")
+        );
+
+        return repo.findAll(spec, sortedPageable);
     }
+
 
 
 }

@@ -138,4 +138,55 @@ public class EmailService {
         mailSender.send(mimeMessage);
     }
 
+    public void sendResetPasswordEmail(String toEmail, String name, String resetLink) throws MessagingException {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+        helper.setTo(toEmail);
+        helper.setSubject("Password Reset Request");
+
+        String htmlContent = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Password Reset</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+          <table width="100%%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+            <tr>
+              <td style="background-color: #e50914; color: #ffffff; padding: 20px; text-align: center;">
+                <h2 style="margin: 0;">🔒 Reset Your Password</h2>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 20px; color: #333333;">
+                <p>Hi <strong>%s</strong>,</p>
+                <p>We received a request to reset your account password. Click the button below to set a new password:</p>
+                
+                <p style="text-align: center; margin: 25px 0;">
+                  <a href="%s" style="background-color: #e50914; color: #ffffff; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Reset Password</a>
+                </p>
+                
+                <p>If you didn’t request this, you can safely ignore this email. Your password will remain unchanged.</p>
+                
+                <p style="margin-top: 20px;">Thanks,<br><strong>Gym Team</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #e50914; color: #ffffff; text-align: center; padding: 10px;">
+                <p style="margin: 0;">Stay Secure • Stay Strong</p>
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html>
+        """;
+
+        String htmlMessage = String.format(htmlContent, name, resetLink);
+
+        helper.setText(htmlMessage, true); // true = send as HTML
+        mailSender.send(mimeMessage);
+    }
+
 }
