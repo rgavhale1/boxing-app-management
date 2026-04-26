@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class AuthService {
@@ -51,9 +52,14 @@ public class AuthService {
         resetTokens.put(token, email);
 
         String resetLink = "https://boxing-app-ui.onrender.com/reset-password?token=" + token;
-        emailService.sendResetPasswordEmail(email, user.getUsername(),  resetLink);
-
-        return "Password reset link sent to email.";
+        CompletableFuture.runAsync(() -> {
+            try {
+                emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
+            } catch (MessagingException e) {
+                // log error
+            }
+        });
+        return "Password reset link is being sent.";
     }
 
     public String resetPassword(String token, String newPassword) {
