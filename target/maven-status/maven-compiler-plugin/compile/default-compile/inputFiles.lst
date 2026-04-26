@@ -1,7 +1,6 @@
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\controller\AuthController.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\service\AuthService.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\exception\BadRequestException.java
-C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\PurchaseResponse.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\GymPlanRequest.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\AuthResponse.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\service\EmailService.java
@@ -9,10 +8,8 @@ C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\model\JoinBatchRequest.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\PaymentUpdateRequest.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\SignUpRequest.java
-C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\repository\GymPlanPurchaseRepository.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\service\JoinRequestService.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\controller\UserController.java
-C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\repository\GymPlanRepository.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\PurchaseRequest.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\UserResponse.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\config\UserDetailsServiceImpl.java
@@ -26,8 +23,6 @@ C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\config\JwtUtils.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\dto\GymPlanResponse.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\controller\JoinRequestController.java
-C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\model\GymPlanPurchase.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\exception\ResourceNotFoundException.java
-C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\model\GymPlan.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\config\JwtAuthFilter.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\latest_repo1\boxing-app-management\src\main\java\com\gym\app\service\JoinBatchRequestSpec.java
