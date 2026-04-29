@@ -39,4 +39,6 @@ spring:
 # ==================== Logging ====================
 logging:
   level:
-    com.gym: DEBUG
+    com.gym: INFO
+    org.springframework.mail: DEBUG
+    org.springframework.web: INFO
