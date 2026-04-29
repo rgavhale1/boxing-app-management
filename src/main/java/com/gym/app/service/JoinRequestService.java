@@ -3,6 +3,7 @@ package com.gym.app.service;
 import com.gym.app.model.JoinBatchRequest;
 import com.gym.app.repository.JoinRequestRepository;
 import jakarta.mail.MessagingException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 
 @Service
+@Slf4j
 public class JoinRequestService {
 
     @Autowired
@@ -31,7 +33,7 @@ public class JoinRequestService {
                     try {
                         emailService.sendConfirmationEmail(request.getEmail(), request.getName(), request.getProgram());
                     } catch (MessagingException e) {
-                        throw new RuntimeException(e);
+                        log.error("Mail send exception: "+e.getMessage());
                     }
                 }
         );
@@ -40,7 +42,7 @@ public class JoinRequestService {
             try {
                 emailService.sendAdminNotification("anuragkopulwar5@gmail.com", request);
             } catch (MessagingException e) {
-                throw new RuntimeException(e);
+                log.error("Mail send exception: "+e.getMessage());
             }
         });
 

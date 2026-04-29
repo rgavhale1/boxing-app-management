@@ -4,6 +4,8 @@ import com.gym.app.config.JwtUtil;
 import com.gym.app.model.User;
 import com.gym.app.repository.UserRepository;
 import jakarta.mail.MessagingException;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @Service
+@Slf4j
 public class AuthService {
 
     @Autowired
@@ -56,7 +59,7 @@ public class AuthService {
             try {
                 emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
             } catch (MessagingException e) {
-                // log error
+log.error("Mail send exception: "+e.getMessage());
             }
         });
         return "Password reset link is being sent.";
