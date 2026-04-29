@@ -44,9 +44,9 @@ public class AuthService {
         return null;
     }
 
-    public String forgotPassword(String email) throws MessagingException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Email not registered"));
+    public String forgotPassword(String email, String username) throws MessagingException {
+        User user = userRepository.findByEmailAndUsername(email, username)
+                .orElseThrow(() -> new RuntimeException("Email or Username not registered"));
 
         String token = UUID.randomUUID().toString();
         resetTokens.put(token, email);

@@ -25,8 +25,11 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    public String forgotPassword(@RequestParam String email) throws MessagingException {
-        return service.forgotPassword(email);
+    public String forgotPassword(
+            @RequestParam String email,
+            @RequestParam String username
+    ) throws MessagingException {
+        return service.forgotPassword(email, username);
     }
 
     @PostMapping("/reset-password")
