@@ -16,29 +16,33 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        default_schema: boxing_app   # <-- tell Hibernate to use gym schema
+        default_schema: boxing_app
 
   mail:
     host: smtp.gmail.com
     port: 587
     username: rgavhale1994@gmail.com
-    password: rwou jaux qtrk yxhc
+    password: rwou jaux qtrk yxhc   # (App password)
+    protocol: smtp
+    default-encoding: UTF-8
+
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          ssl:
+            trust: smtp.gmail.com
 
-# ==================== JWT ====================
-#app:
-#  jwt:
-#    secret: GymManagementSuperSecretKeyThatIsAtLeast256BitsLong1234567890ABCDEF
-#    expiration-ms: 86400000
-
-# ==================== Logging ====================
+# ==================== LOGGING ====================
 logging:
   level:
-    com.gym: INFO
+    com.gym: DEBUG
     org.springframework.mail: DEBUG
+    jakarta.mail: DEBUG
     org.springframework.web: INFO
