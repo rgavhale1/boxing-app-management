@@ -38,7 +38,7 @@ public class SecurityConfig {
         // Allow both local dev and deployed frontend
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",              // local development
-                "https://boxing-app-ui.onrender.com"  // production frontend
+                "https://boxingave.com/"  // production frontend
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

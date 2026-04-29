@@ -51,7 +51,7 @@ public class AuthService {
         String token = UUID.randomUUID().toString();
         resetTokens.put(token, email);
 
-        String resetLink = "https://boxing-app-ui.onrender.com/reset-password?token=" + token;
+        String resetLink = "https://boxingave.com//reset-password?token=" + token;
         CompletableFuture.runAsync(() -> {
             try {
                 emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
