@@ -56,13 +56,7 @@ public class AuthService {
         resetTokens.put(token, email);
 
         String resetLink = "https://boxingave.com/reset-password?token=" + token;
-        try {
-            emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
-        } catch (MessagingException e) {
-            log.error("Mail send exception: "+e.getMessage());
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
         return "Password reset link is being sent.";
     }
 

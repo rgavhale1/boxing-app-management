@@ -31,22 +31,12 @@ public class JoinRequestService {
 
         CompletableFuture.runAsync(() ->
                 {
-                    try {
-                        emailService.sendConfirmationEmail(request.getEmail(), request.getName(), request.getProgram());
-                    } catch (MessagingException e) {
-                        log.error("Mail send exception: "+e.getMessage());
-                    } catch (UnsupportedEncodingException e) {
-                        throw new RuntimeException(e);
-                    }
+                    emailService.sendConfirmationEmail(request.getEmail(), request.getName(), request.getProgram());
                 }
         );
 
         CompletableFuture.runAsync(() -> {
-            try {
-                emailService.sendAdminNotification("anuragkopulwar5@gmail.com", request);
-            } catch (MessagingException | UnsupportedEncodingException e) {
-                log.error("Mail send exception: "+e.getMessage());
-            }
+            emailService.sendAdminNotification("anuragkopulwar5@gmail.com", request);
         });
 
         return "Success";

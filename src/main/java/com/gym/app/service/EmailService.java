@@ -1,48 +1,51 @@
 package com.gym.app.service;
 
 import com.gym.app.model.JoinBatchRequest;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import lombok.RequiredArgsConstructor;
+import com.sendgrid.*;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.UnsupportedEncodingException;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class EmailService {
 
-    private final JavaMailSender mailSender;
+    @Value("${sendgrid.api-key}")
+    private String apiKey;
 
-    // ✅ Must be VERIFIED in SendGrid (Single Sender or Domain Auth)
+    // ✅ Your VERIFIED sender email
     private static final String FROM_EMAIL = "rgavhale1994@gmail.com";
     private static final String FROM_NAME = "Boxing Avenue";
 
-    private void sendEmail(String to, String subject, String htmlContent) throws MessagingException, UnsupportedEncodingException {
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-
-        // ✅ SendGrid requires verified sender
-        helper.setFrom(FROM_EMAIL, FROM_NAME);
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(htmlContent, true);
+    private void sendEmail(String to, String subject, String htmlContent) {
 
         try {
-            mailSender.send(mimeMessage);
-            log.info("✅ Email sent to: {}", to);
+            Email from = new Email(FROM_EMAIL, FROM_NAME);
+            Email toEmail = new Email(to);
+
+            Content content = new Content("text/html", htmlContent);
+            Mail mail = new Mail(from, subject, toEmail, content);
+
+            SendGrid sg = new SendGrid(apiKey);
+
+            Request request = new Request();
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+
+            Response response = sg.api(request);
+
+            log.info("✅ Email sent. Status Code: {}", response.getStatusCode());
+
         } catch (Exception e) {
-            log.error("❌ Failed to send email to {}: {}", to, e.getMessage(), e);
-            throw e;
+            log.error("❌ Email sending failed: {}", e.getMessage(), e);
         }
     }
 
-    public void sendConfirmationEmail(String toEmail, String name, String program) throws MessagingException, UnsupportedEncodingException {
+    public void sendConfirmationEmail(String toEmail, String name, String program) {
 
         String htmlMessage = String.format("""
             <html>
@@ -58,7 +61,7 @@ public class EmailService {
         sendEmail(toEmail, "Gym Registration Confirmed", htmlMessage);
     }
 
-    public void sendAdminNotification(String adminEmail, JoinBatchRequest request) throws MessagingException, UnsupportedEncodingException {
+    public void sendAdminNotification(String adminEmail, JoinBatchRequest request) {
 
         String htmlMessage = String.format("""
             <html>
@@ -82,7 +85,7 @@ public class EmailService {
         sendEmail(adminEmail, "New Gym Registration", htmlMessage);
     }
 
-    public void sendResetPasswordEmail(String toEmail, String name, String resetLink) throws MessagingException, UnsupportedEncodingException {
+    public void sendResetPasswordEmail(String toEmail, String name, String resetLink) {
 
         String htmlMessage = String.format("""
             <html>
@@ -91,7 +94,7 @@ public class EmailService {
               <p>Hi <b>%s</b>,</p>
               <p>Click below to reset your password:</p>
               <a href="%s">Reset Password</a>
-              <p>If not requested, ignore.</p>
+              <p>If not requested, ignore this email.</p>
             </body>
             </html>
         """, name, resetLink);
