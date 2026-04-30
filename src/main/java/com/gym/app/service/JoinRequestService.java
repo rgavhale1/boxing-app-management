@@ -36,7 +36,7 @@ public class JoinRequestService {
         );
 
         CompletableFuture.runAsync(() -> {
-            emailService.sendAdminNotification("anuragkopulwar5@gmail.com", request);
+            emailService.sendAdminNotification("rgavhale29@gmail.com", request);
         });
 
         return "Success";
