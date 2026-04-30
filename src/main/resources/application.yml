@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-d7jphqnavr4c73chkl30-a.singapore-postgres.render.com:5432/boxing_db_bsa3
-    username: root
-    password: Vks933tziSADLIXEVqqlhpoZj2FElqCN
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -19,10 +19,10 @@ spring:
         default_schema: boxing_app
 
   mail:
-    host: smtp.gmail.com
+    host: smtp.sendgrid.net
     port: 587
-    username: rgavhale1994@gmail.com
-    password: rwou jaux qtrk yxhc   # (App password)
+    username: apikey
+    password: ${SENDGRID_API_KEY}
     protocol: smtp
     default-encoding: UTF-8
 
@@ -36,10 +36,7 @@ spring:
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
-          ssl:
-            trust: smtp.gmail.com
 
-# ==================== LOGGING ====================
 logging:
   level:
     com.gym: DEBUG

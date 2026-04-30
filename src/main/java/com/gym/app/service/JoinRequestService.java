@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 
@@ -34,6 +35,8 @@ public class JoinRequestService {
                         emailService.sendConfirmationEmail(request.getEmail(), request.getName(), request.getProgram());
                     } catch (MessagingException e) {
                         log.error("Mail send exception: "+e.getMessage());
+                    } catch (UnsupportedEncodingException e) {
+                        throw new RuntimeException(e);
                     }
                 }
         );
@@ -41,7 +44,7 @@ public class JoinRequestService {
         CompletableFuture.runAsync(() -> {
             try {
                 emailService.sendAdminNotification("anuragkopulwar5@gmail.com", request);
-            } catch (MessagingException e) {
+            } catch (MessagingException | UnsupportedEncodingException e) {
                 log.error("Mail send exception: "+e.getMessage());
             }
         });

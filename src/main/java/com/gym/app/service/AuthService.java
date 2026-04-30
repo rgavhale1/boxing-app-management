@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class AuthService {
         Optional<User> db = userRepository.findByUsername(user.getUsername());
 
         if (db.isPresent() &&
-            encoder.matches(user.getPassword(), db.get().getPassword())) {
+                encoder.matches(user.getPassword(), db.get().getPassword())) {
 
             return JwtUtil.generateToken(user.getUsername());
         }
@@ -55,11 +56,13 @@ public class AuthService {
         resetTokens.put(token, email);
 
         String resetLink = "https://boxingave.com/reset-password?token=" + token;
-            try {
-                emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
-            } catch (MessagingException e) {
-log.error("Mail send exception: "+e.getMessage());
-            }
+        try {
+            emailService.sendResetPasswordEmail(email, user.getUsername(), resetLink);
+        } catch (MessagingException e) {
+            log.error("Mail send exception: "+e.getMessage());
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
         return "Password reset link is being sent.";
     }
 
