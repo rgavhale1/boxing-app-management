@@ -17,7 +17,7 @@ public class EmailService {
     private String apiKey;
 
     // ✅ Your VERIFIED sender email
-    private static final String FROM_EMAIL = "rgavhale1994@gmail.com";
+    private static final String FROM_EMAIL = "noreply@boxingave.com";
     private static final String FROM_NAME = "Boxing Avenue";
 
     private void sendEmail(String to, String subject, String htmlContent) {
