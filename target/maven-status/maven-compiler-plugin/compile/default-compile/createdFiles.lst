@@ -22,8 +22,8 @@ com\gym\app\dto\UserResponse$UserResponseBuilder.class
 com\gym\app\exception\ResourceNotFoundException.class
 com\gym\app\model\User.class
 com\gym\app\service\AuthService.class
-com\gym\app\GymManagementApplication.class
 com\gym\app\config\JwtUtil.class
+com\gym\app\BoxingAppManagementApplication.class
 com\gym\app\model\JoinBatchRequest.class
 com\gym\app\dto\GymPlanResponse$GymPlanResponseBuilder.class
 com\gym\app\service\JoinBatchRequestSpec.class

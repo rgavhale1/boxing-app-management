@@ -20,9 +20,9 @@ C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\controller\JoinRequestController.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\dto\GymPlanRequest.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\controller\AuthController.java
-C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\GymManagementApplication.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\config\JwtUtil.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\dto\ApiResponse.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\config\UserDetailsServiceImpl.java
+C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\BoxingAppManagementApplication.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\dto\SignInRequest.java
 C:\Users\Rajeshree Kopulwar\Documents\GitHub\boxing-app-management\src\main\java\com\gym\app\dto\GymPlanResponse.java

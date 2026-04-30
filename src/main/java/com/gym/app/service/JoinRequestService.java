@@ -5,6 +5,7 @@ import com.gym.app.repository.JoinRequestRepository;
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,10 @@ public class JoinRequestService {
 
     @Autowired
     private EmailService emailService;
+
+
+    @Value("${app.admin.email}")
+    private String adminEmail;
 
     public String saveAndNotify(JoinBatchRequest request) {
         repo.save(request);

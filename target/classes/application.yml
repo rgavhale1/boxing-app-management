@@ -22,6 +22,11 @@ spring:
 sendgrid:
   api-key: ${SENDGRID_API_KEY}
 
+# ==================== App admin email ====================
+app:
+  admin:
+    email: ${APP_ADMIN_EMAIL}
+
 # ==================== LOGGING ====================
 logging:
   level:
