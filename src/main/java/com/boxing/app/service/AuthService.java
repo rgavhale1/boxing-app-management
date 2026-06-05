@@ -42,7 +42,7 @@ public class AuthService {
             return JwtUtil.generateToken(user.getUsername());
         }
 
-        return null;
+        throw new RuntimeException("Invalid username or password");
     }
 
     public String forgotPassword(String email, String username) throws MessagingException {

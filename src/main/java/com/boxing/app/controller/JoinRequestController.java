@@ -18,14 +18,14 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class JoinRequestController {
     @Autowired
-    private JoinRequestService service;
+    private JoinRequestService joinRequestService;
 
     @Autowired
     private JoinRequestRepository repo;
     @PostMapping("/join")
     public String saveJoinRequest(@RequestBody JoinBatchRequest request) throws MessagingException {
 
-        return service.saveAndNotify(request);
+        return joinRequestService.saveAndNotify(request);
 
     }
 
@@ -41,12 +41,13 @@ public class JoinRequestController {
             @RequestParam(required = false) String mobile,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String time,
-            @RequestParam(required = false) String program,
+            @RequestParam(required = false) String programType,
+            @RequestParam(required = false) String service,
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             LocalDate registeredDate,
             Pageable pageable
     ) {
-        return service.getUsers(name, mobile, email, time, program, registeredDate, pageable);
+        return joinRequestService.getUsers(name, mobile, email, time, programType,service, registeredDate, pageable);
     }
 }

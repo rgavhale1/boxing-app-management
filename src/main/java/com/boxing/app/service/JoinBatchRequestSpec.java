@@ -35,11 +35,11 @@ public class JoinBatchRequestSpec {
                         : cb.like(root.get("time"), "%" + time + "%");
     }
 
-    public static Specification<JoinBatchRequest> programContains(String program) {
+    public static Specification<JoinBatchRequest> programTypeContains(String programType) {
         return (root, query, cb) ->
-                program == null || program.isEmpty()
+                programType == null || programType.isEmpty()
                         ? null
-                        : cb.like(cb.lower(root.get("program")), "%" + program.toLowerCase() + "%");
+                        : cb.like(cb.lower(root.get("programType")), "%" + programType.toLowerCase() + "%");
     }
 
     public static Specification<JoinBatchRequest> dateEquals(LocalDate date) {
@@ -47,5 +47,12 @@ public class JoinBatchRequestSpec {
                 date == null
                         ? null
                         : cb.equal(root.get("registeredDate"), date);
+    }
+
+    public static Specification<JoinBatchRequest> serviceContains(String service) {
+        return (root, query, cb) ->
+                service == null || service.isEmpty()
+                        ? null
+                        : cb.like(cb.lower(root.get("service")), "%" + service.toLowerCase() + "%");
     }
 }

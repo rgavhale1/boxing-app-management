@@ -34,7 +34,7 @@ public class JoinRequestService {
 
         CompletableFuture.runAsync(() ->
                 {
-                    emailService.sendConfirmationEmail(request.getEmail(), request.getName(), request.getProgram());
+                    emailService.sendConfirmationEmail(request.getEmail(), request.getName(), request.getProgramType(),request.getService());
                 }
         );
 
@@ -50,7 +50,8 @@ public class JoinRequestService {
             String mobile,
             String email,
             String time,
-            String program,
+            String programType,
+            String service,
             LocalDate registeredDate,
             Pageable pageable
     ) {
@@ -59,7 +60,8 @@ public class JoinRequestService {
                         .and(JoinBatchRequestSpec.mobileContains(mobile))
                         .and(JoinBatchRequestSpec.emailContains(email))
                         .and(JoinBatchRequestSpec.timeContains(time))
-                        .and(JoinBatchRequestSpec.programContains(program))
+                        .and(JoinBatchRequestSpec.programTypeContains(programType))
+                        .and(JoinBatchRequestSpec.serviceContains(service))
                         .and(JoinBatchRequestSpec.dateEquals(registeredDate));
 
         // Force sorting by registeredDate DESC

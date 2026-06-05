@@ -18,7 +18,8 @@ public class JoinBatchRequest {
     private String mobile;
     private String email;
     private String time;
-    private String program;
+    private String programType;
+    private String service;          // new field added
     private LocalDate registeredDate;
 
     @PrePersist
